@@ -10,3 +10,9 @@ This plugin remedy the desync on curios items problem when using multiverse-inve
 - Mohist 1.20.1 2025Q4 vers
   - Multiverse-core 5.5.1
   - Multiverse-inventories 5.3.1
+### Usage
+  - Install the plugin and make sure you have all the requirements
+  - `/mvinv info <worldName>` to check if share `curioSharable` exists
+  - You can use this the share name alias `cs` for editing group shares. Check multiverse-inventories wiki
+  - Once you've done editing shares, `/mvinv reload` to reload configs
+  - If you met some problems, remember checking console logs
