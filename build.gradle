@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.potatocraft92'
+version = '1.0-SNAPSHOT'
+
+repositories {
+
+    mavenLocal() // This is needed for CraftBukkit and Spigot.
+
+    //spigot
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+
+        // As of Gradle 5.1, you can limit this to only those
+        // dependencies you expect from it
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+
+
+    //Forge
+    maven { url = 'https://maven.minecraftforge.net/' }
+
+    //Curio
+    maven { url = 'https://maven.theillusivec4.top/' }
+
+    //Multiverse
+    maven { url = "https://repo.onarandombox.com/content/groups/public/" }
+
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    compileOnly 'org.spigotmc:spigot:1.20.1-R0.1-SNAPSHOT:remapped-mojang'
+    compileOnly "org.mvplugins.multiverse.inventories:multiverse-inventories:${multiverse_core_version}"
+    compileOnly "top.theillusivec4.curios:curios-forge:${curios_version}:api"
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register("copyPlugin",Copy){
+    dependsOn jar
+    from jar
+    into "run/plugins"
+}
+
+tasks.register("runServer", JavaExec) {
+    dependsOn "copyPlugin"
+    workingDir "run"
+    mainClass = "-jar"
+    args = ["mohist.jar", "nogui"]
+    jvmArgs "-Xms2G", "-Xmx4G"
+    standardInput = System.in
+}
+
+tasks.register("runCleanServer",JavaExec){
+    workingDir "run"
+    mainClass = "-jar"
+    args = ["mohist.jar", "nogui"]
+    jvmArgs "-Xms2G", "-Xmx4G"
+    standardInput = System.in
+    doFirst {
+        delete file("plugins/Wheres_my_fucking_curios-1.0-SNAPSHOT.jar")
+    }
+}

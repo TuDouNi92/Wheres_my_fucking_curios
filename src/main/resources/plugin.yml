@@ -1,0 +1,7 @@
+name: wmfc
+version: 1.0
+main: org.potatocraft92.Main
+api-version: 1.20
+author: TuDouNi
+description: Curios capability bridge for Multiverse-Inventories
+depend: [Multiverse-Inventories]
