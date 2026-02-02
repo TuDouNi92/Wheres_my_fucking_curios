@@ -21,7 +21,6 @@ repositories {
         }
     }
 
-
     //Forge
     maven { url = 'https://maven.minecraftforge.net/' }
 
@@ -38,7 +37,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     compileOnly 'org.spigotmc:spigot:1.20.1-R0.1-SNAPSHOT:remapped-mojang'
-    compileOnly "org.mvplugins.multiverse.inventories:multiverse-inventories:${multiverse_core_version}"
+    compileOnly "org.mvplugins.multiverse.inventories:multiverse-inventories:${multiverse_inv_version}"
     compileOnly "top.theillusivec4.curios:curios-forge:${curios_version}:api"
 
 }
